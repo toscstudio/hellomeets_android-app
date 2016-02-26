@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">HelloMeets</string>
+
+    <string-array name="intro_subtitles">
+        <item>Where like-minded people meet over meaningful conversation</item>
+        <item>The vibrant community designed to create lasting relationships</item>
+        <item>A better experience in every meed</item>
+    </string-array>
+</resources>
