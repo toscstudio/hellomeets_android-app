@@ -50,6 +50,8 @@ public class IntroActivity extends AppIntro {
 
     @Override
     public void onSkipPressed() {
+        SharedPreferences sPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sPrefs.edit().putBoolean(MainActivity.PREF_INTRO_SHOWN, true).apply();
         goToMainActivity();
     }
 
@@ -60,6 +62,8 @@ public class IntroActivity extends AppIntro {
 
     @Override
     public void onDonePressed() {
+        SharedPreferences sPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sPrefs.edit().putBoolean(MainActivity.PREF_INTRO_SHOWN, true).apply();
         goToMainActivity();
     }
 

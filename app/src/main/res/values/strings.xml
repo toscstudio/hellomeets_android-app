@@ -1,9 +1,18 @@
 <resources>
     <string name="app_name">HelloMeets</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
     <string-array name="intro_subtitles">
         <item>Where like-minded people meet over meaningful conversation</item>
         <item>The vibrant community designed to create lasting relationships</item>
         <item>A better experience in every meed</item>
+    </string-array>
+
+    <string-array name="top_nav_entries">
+        <item>Page 1</item>
+        <item>Page 2</item>
+        <item>Page 3</item>
     </string-array>
 </resources>
