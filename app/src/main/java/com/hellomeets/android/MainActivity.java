@@ -9,7 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ListView;
 
+import com.hellomeets.android.categories.BaseCategories;
+import com.hellomeets.android.categories.CategoryAdapter;
 import com.hellomeets.android.intro.IntroActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     FrameLayout contentFrame;
     FrameLayout drawerFrame;
     ActionBarDrawerToggle mDrawerToggle;
+    ListView navList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         navDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         contentFrame = (FrameLayout) findViewById(R.id.content_frame);
         drawerFrame = (FrameLayout) findViewById(R.id.left_drawer);
+        navList = (ListView) findViewById(R.id.nav_list);
+        navList.setAdapter(new CategoryAdapter(this, BaseCategories.getTopCategories()));
 
         mDrawerToggle = new ActionBarDrawerToggle
                 (

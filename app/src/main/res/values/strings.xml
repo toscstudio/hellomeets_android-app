@@ -4,6 +4,10 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+
+    <string name="category_hellohackers">Hello Hackers</string>
+    <string name="category_hellocoders">Hello Coders</string>
+
     <string-array name="intro_subtitles">
         <item>Where like-minded people meet over meaningful conversation</item>
         <item>The vibrant community designed to create lasting relationships</item>
