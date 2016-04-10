@@ -1,4 +1,4 @@
-package com.hellomeets.android.fragment;
+package com.hellomeets.android.fragment.upcoming;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hellomeets.android.R;
-import com.hellomeets.android.fragment.EventListFragment.OnListFragmentInteractionListener;
-import com.hellomeets.android.fragment.dummy.DummyContent.DummyItem;
+import com.hellomeets.android.fragment.upcoming.UpcomingEventListFragment.OnListFragmentInteractionListener;
+import com.hellomeets.android.utils.DummyContent.DummyItem;
 
 import java.util.List;
 
@@ -17,12 +17,12 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecyclerViewAdapter.ViewHolder> {
+public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public EventRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public UpcomingEventAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }

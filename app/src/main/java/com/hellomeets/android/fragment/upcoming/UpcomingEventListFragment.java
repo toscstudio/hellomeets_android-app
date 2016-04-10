@@ -1,4 +1,4 @@
-package com.hellomeets.android.fragment;
+package com.hellomeets.android.fragment.upcoming;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hellomeets.android.R;
-import com.hellomeets.android.fragment.dummy.DummyContent;
-import com.hellomeets.android.fragment.dummy.DummyContent.DummyItem;
+import com.hellomeets.android.utils.DummyContent;
+import com.hellomeets.android.utils.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.
@@ -20,7 +20,7 @@ import com.hellomeets.android.fragment.dummy.DummyContent.DummyItem;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class EventListFragment extends Fragment {
+public class UpcomingEventListFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -32,14 +32,14 @@ public class EventListFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public EventListFragment() {
+    public UpcomingEventListFragment() {
     }
 
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static EventListFragment newInstance(int columnCount) {
-        EventListFragment fragment = new EventListFragment();
+    public static UpcomingEventListFragment newInstance(int columnCount) {
+        UpcomingEventListFragment fragment = new UpcomingEventListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -69,7 +69,7 @@ public class EventListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new EventRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new UpcomingEventAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }

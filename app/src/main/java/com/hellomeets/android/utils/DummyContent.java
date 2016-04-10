@@ -1,4 +1,4 @@
-package com.hellomeets.android.fragment.dummy;
+package com.hellomeets.android.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;

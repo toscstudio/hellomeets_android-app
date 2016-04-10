@@ -2,29 +2,23 @@ package com.hellomeets.android;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.hellomeets.android.fragment.EventListFragment;
-import com.hellomeets.android.fragment.dummy.DummyContent;
+import com.hellomeets.android.fragment.upcoming.UpcomingEventListFragment;
+import com.hellomeets.android.utils.DummyContent;
 import com.hellomeets.android.intro.IntroActivity;
 
-public class MainActivity extends AppCompatActivity implements EventListFragment.OnListFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements UpcomingEventListFragment.OnListFragmentInteractionListener{
 
     public static final String PREF_INTRO_SHOWN = "intro_shown";
 
@@ -104,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements EventListFragment
         Fragment newFragment;
         switch (navItemPosition) {
             default:
-                newFragment = EventListFragment.newInstance(1);
+                newFragment = UpcomingEventListFragment.newInstance(1);
                 break;
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, newFragment).commit();
