@@ -2,13 +2,16 @@ package com.hellomeets.android;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
@@ -17,6 +20,8 @@ import android.widget.ListView;
 import com.hellomeets.android.fragment.upcoming.UpcomingEventListFragment;
 import com.hellomeets.android.utils.DummyContent;
 import com.hellomeets.android.intro.IntroActivity;
+import com.thefinestartist.finestwebview.FinestWebView;
+import com.thefinestartist.finestwebview.FinestWebViewActivity;
 
 public class MainActivity extends AppCompatActivity implements UpcomingEventListFragment.OnListFragmentInteractionListener{
 
@@ -84,9 +89,8 @@ public class MainActivity extends AppCompatActivity implements UpcomingEventList
         navList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                navList.setItemChecked(position, true);
-                navDrawerLayout.closeDrawer(drawerFrame);
                 goToFragment(position);
+                navDrawerLayout.closeDrawer(drawerFrame);
 
             }
         });
@@ -94,14 +98,31 @@ public class MainActivity extends AppCompatActivity implements UpcomingEventList
 
     }
 
+
     private void goToFragment (int navItemPosition) {
         Fragment newFragment;
+        String tag;
         switch (navItemPosition) {
+            case 2:
+                new FinestWebView.Builder(getApplicationContext())
+                        .statusBarColor(Color.BLACK)
+                        .toolbarColor(Color.BLACK)
+                        .progressBarColor(Color.WHITE)
+                        .titleColor(Color.WHITE)
+                        .updateTitleFromHtml(true)
+                        .iconDefaultColor(Color.WHITE)
+                        .iconDisabledColor(Color.DKGRAY)
+                        .show("http://medium.com/@hellomeets");
+                navList.setItemChecked(0, true);
+                break;
+
             default:
+                navList.setItemChecked(navItemPosition, true);
                 newFragment = UpcomingEventListFragment.newInstance(1);
+                tag = "upcoming";
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, newFragment, tag).commit();
                 break;
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, newFragment).commit();
     }
 
     @Override

@@ -37,7 +37,6 @@
 
     <ListView
         android:id="@+id/nav_list"
-        android:choiceMode="singleChoice"
         android:listSelector="#66666666"
         android:drawSelectorOnTop="true"
         android:layout_width="match_parent"
