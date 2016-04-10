@@ -29,6 +29,12 @@
             android:layout_height="60dp"/>
     </RelativeLayout>
 
+    <View
+        android:id="@+id/nav_drawer_divider"
+        android:background="#6666"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
     <ListView
         android:id="@+id/nav_list"
         android:layout_width="match_parent"
