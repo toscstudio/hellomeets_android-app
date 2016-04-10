@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements UpcomingEventList
                         .iconDefaultColor(Color.WHITE)
                         .iconDisabledColor(Color.DKGRAY)
                         .show("http://medium.com/@hellomeets");
+                //Do not select the blog item
                 navList.setItemChecked(0, true);
                 break;
 
