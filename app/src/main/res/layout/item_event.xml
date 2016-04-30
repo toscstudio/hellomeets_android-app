@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:layout_marginBottom="3dp"
+    android:background="?selectableItemBackground"
     app:elevation="3dp">
 
 
     <ImageView
         android:id="@+id/event_thumbnail"
+        android:transitionName="@string/transition_string"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/cardview_dark_background"
@@ -21,6 +23,11 @@
         android:layout_height="match_parent"
         android:background="#22ffffff" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?selectableItemBackground"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -109,7 +116,7 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="?selectableItemBackground"
+                android:background="?selectableItemBackgroundBorderless"
                 android:orientation="horizontal"
                 android:paddingLeft="10dp"
                 android:paddingRight="30dp"

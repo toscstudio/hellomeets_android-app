@@ -23,7 +23,7 @@ import com.hellomeets.android.intro.IntroActivity;
 import com.thefinestartist.finestwebview.FinestWebView;
 import com.thefinestartist.finestwebview.FinestWebViewActivity;
 
-public class MainActivity extends AppCompatActivity implements UpcomingEventListFragment.OnListFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity {
 
     public static final String PREF_INTRO_SHOWN = "intro_shown";
 
@@ -126,8 +126,4 @@ public class MainActivity extends AppCompatActivity implements UpcomingEventList
         }
     }
 
-    @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
-
-    }
 }
