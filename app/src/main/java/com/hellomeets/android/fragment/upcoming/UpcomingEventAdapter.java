@@ -1,30 +1,31 @@
 package com.hellomeets.android.fragment.upcoming;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hellomeets.android.EventDetailActivity;
 import com.hellomeets.android.R;
-import com.hellomeets.android.fragment.upcoming.UpcomingEventListFragment.OnListFragmentInteractionListener;
 import com.hellomeets.android.utils.DummyContent.DummyItem;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private Activity mActivity;
 
-    public UpcomingEventAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public UpcomingEventAdapter(List<DummyItem> items, Activity mActivity) {
         mValues = items;
-        mListener = listener;
+        this.mActivity = mActivity;
     }
 
     @Override
@@ -38,18 +39,22 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         /*holder.mIdView.setText(mValues.get(position).id);
-        holder.mEventView.setText(mValues.get(position).content);
+        holder.mEventView.setText(mValues.get(position).content);*/
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                Context context = v.getContext();
+                Intent intent = new Intent(context, EventDetailActivity.class);
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    String transitionName = context.getString(R.string.transition_string);
+                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity, holder.mBannerImageView, transitionName);
+                    context.startActivity(intent, options.toBundle());
+                } else {
+                    context.startActivity(intent);
                 }
             }
-        });*/
+        });
     }
 
     @Override
@@ -59,6 +64,7 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
+        public final ImageView mBannerImageView;
         public final TextView mDate;
         public final TextView mEventView;
         public final TextView mEventPrice;
@@ -74,6 +80,7 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
             mEventPrice = (TextView) view.findViewById(R.id.price);
             mBookingtextView = (TextView) view.findViewById(R.id.book);
             mSpeakers = (TextView) view.findViewById(R.id.speakers);
+            mBannerImageView = (ImageView) view.findViewById(R.id.event_thumbnail);
 
         }
 
