@@ -30,15 +30,15 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_event, parent, false);
+                .inflate(R.layout.item_event, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        /*holder.mIdView.setText(mValues.get(position).id);
+        holder.mEventView.setText(mValues.get(position).content);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +49,7 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
                     mListener.onListFragmentInteraction(holder.mItem);
                 }
             }
-        });
+        });*/
     }
 
     @Override
@@ -59,20 +59,27 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final TextView mDate;
+        public final TextView mEventView;
+        public final TextView mEventPrice;
+        public final TextView mBookingtextView;
+        public final TextView mSpeakers;
         public DummyItem mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mDate = (TextView) view.findViewById(R.id.date);
+            mEventView = (TextView) view.findViewById(R.id.event_title);
+            mEventPrice = (TextView) view.findViewById(R.id.price);
+            mBookingtextView = (TextView) view.findViewById(R.id.book);
+            mSpeakers = (TextView) view.findViewById(R.id.speakers);
+
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + mEventView.getText() + "'";
         }
     }
 }
