@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -68,7 +69,7 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
         public final TextView mDate;
         public final TextView mEventView;
         public final TextView mEventPrice;
-        public final TextView mBookingtextView;
+        public final Button mBookingButton;
         public final TextView mSpeakers;
         public DummyItem mItem;
 
@@ -78,7 +79,7 @@ public class UpcomingEventAdapter extends RecyclerView.Adapter<UpcomingEventAdap
             mDate = (TextView) view.findViewById(R.id.date);
             mEventView = (TextView) view.findViewById(R.id.event_title);
             mEventPrice = (TextView) view.findViewById(R.id.price);
-            mBookingtextView = (TextView) view.findViewById(R.id.book);
+            mBookingButton = (Button) view.findViewById(R.id.book);
             mSpeakers = (TextView) view.findViewById(R.id.speakers);
             mBannerImageView = (ImageView) view.findViewById(R.id.event_thumbnail);
 

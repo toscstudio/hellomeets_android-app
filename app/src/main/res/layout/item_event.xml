@@ -107,26 +107,25 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="10dp"
                 android:text="INR. 999"
+                android:layout_centerVertical="true"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <Button
                 android:id="@+id/book"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/book_button_height"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="?selectableItemBackgroundBorderless"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="30dp"
                 android:text="BOOK NOW"
-                android:textColor="#088AE8"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+                android:background="@drawable/item_bg"
+                android:textColor="@color/finestBlack"
+                android:textSize="13sp"
+                android:padding="9dp"
+                android:fontFamily="sans-serif-thin"
+                android:textStyle="normal" />
 
 
         </RelativeLayout>
