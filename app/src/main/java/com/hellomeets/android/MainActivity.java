@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     FrameLayout drawerFrame;
     ActionBarDrawerToggle mDrawerToggle;
     ListView navList;
+    Fragment newFragment;
+    String tag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        /** Initialize MainActivity with Upcoming event fragment */
+        newFragment = UpcomingEventListFragment.newInstance(1);
+        tag = "upcoming";
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, newFragment, tag).commit();
 
         navDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         contentFrame = (FrameLayout) findViewById(R.id.content_frame);
@@ -100,8 +107,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void goToFragment (int navItemPosition) {
-        Fragment newFragment;
-        String tag;
         switch (navItemPosition) {
             case 2:
                 new FinestWebView.Builder(getApplicationContext())
