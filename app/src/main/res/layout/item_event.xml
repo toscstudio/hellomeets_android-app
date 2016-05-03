@@ -6,12 +6,12 @@
     android:layout_height="200dp"
     android:layout_marginBottom="3dp"
     android:background="?selectableItemBackground"
+    android:transitionName="@string/transition_string"
     app:elevation="3dp">
 
 
     <ImageView
         android:id="@+id/event_thumbnail"
-        android:transitionName="@string/transition_string"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/javascript_banner"

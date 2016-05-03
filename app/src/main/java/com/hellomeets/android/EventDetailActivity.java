@@ -3,21 +3,21 @@ package com.hellomeets.android;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
+import com.hellomeets.android.fragment.upcoming.eventsDetail.EventsFragmentAdapter;
+import com.hellomeets.android.fragmentnavigator.FragmentNavigator;
+import com.hellomeets.android.widgets.TabLayout;
 
 public class EventDetailActivity extends AppCompatActivity {
 
-    private CollapsingToolbarLayout collapsingToolbar;
+    private FragmentNavigator mNavigator;
+    private TabLayout tabLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +26,37 @@ public class EventDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Events Detail");
 
-        collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        collapsingToolbar.setTitle("Isomorphic JavaScript Devlopment");
-        /**
-         * TODO : take title info from event object
-         */
+        mNavigator = new FragmentNavigator(getSupportFragmentManager(), new EventsFragmentAdapter(), R.id.childContainer);
+        mNavigator.setDefaultPosition(0);
+        mNavigator.onCreate(savedInstanceState);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        tabLayout.setOnTabItemClickListener(new TabLayout.OnTabItemClickListener() {
+            @Override
+            public void onTabItemClick(int position, View view) {
+                setCurrentTab(position);
+            }
+        });
+
+        setCurrentTab(mNavigator.getCurrentPosition());
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             postponeEnterTransition();
         }
 
-        loadBackdrop();
+    }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mNavigator.onSaveInstanceState(outState);
+    }
+
+    public void setCurrentTab(int position) {
+        mNavigator.showFragment(position);
+        tabLayout.select(position);
     }
 
     @Override
@@ -70,11 +88,5 @@ public class EventDetailActivity extends AppCompatActivity {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    private void loadBackdrop() {
-        final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-        imageView.setBackground(getResources().getDrawable(R.drawable.javascript_banner));
-        //Picasso.with(this).load(imageURL).into(imageView);
-    }
 
 }
