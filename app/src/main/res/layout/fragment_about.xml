@@ -1,13 +1,61 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.hellomeets.android.fragment.upcoming.eventsDetail.AboutFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sunday | 24th April, 2016 | 5pm - 7pm"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="36dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+        <TextView
+            android:id="@+id/Speakers_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What's in it for you?"
+            android:layout_gravity="left"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="36dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            android:textColor="@color/finestBlack"/>
+
+        <TextView
+            android:id="@+id/detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/large_text"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="36dp"/>
+
+        <Button
+            android:id="@+id/book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BOOK NOW"
+            android:background="@drawable/item_bg"
+            android:textColor="@color/finestBlack"
+            android:textSize="13sp"
+            android:padding="9dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="36dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal" />
+
+
+    </LinearLayout>
+
+</ScrollView>
