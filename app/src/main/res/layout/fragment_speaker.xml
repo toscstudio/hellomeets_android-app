@@ -1,13 +1,61 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.hellomeets.android.fragment.upcoming.eventsDetail.SpeakerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/placeholder_user_dp"
+            android:layout_height="72dp"
+            android:layout_width="72dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/Speakers_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SPEAKER'S NAME"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            android:textColor="@color/finestBlack"/>
+
+        <TextView
+            android:id="@+id/Speakers_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SPEAKER'S BIO"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+
+        <TextView
+            android:id="@+id/detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/large_text"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="36dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Share your question"
+        android:background="@drawable/edittext_bg"
+        android:padding="8dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

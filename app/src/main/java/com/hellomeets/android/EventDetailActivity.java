@@ -3,44 +3,41 @@ package com.hellomeets.android;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.hellomeets.android.fragment.upcoming.eventsDetail.EventsFragmentAdapter;
-import com.hellomeets.android.fragmentnavigator.FragmentNavigator;
-import com.hellomeets.android.widgets.TabLayout;
+import com.hellomeets.android.fragment.upcoming.eventsDetail.AboutFragment;
+import com.hellomeets.android.fragment.upcoming.eventsDetail.MapFragment;
+import com.hellomeets.android.fragment.upcoming.eventsDetail.SpeakerFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventDetailActivity extends AppCompatActivity {
-
-    private FragmentNavigator mNavigator;
-    private TabLayout tabLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Events Detail");
+        getSupportActionBar().setTitle("Events Detail");*/
 
-        mNavigator = new FragmentNavigator(getSupportFragmentManager(), new EventsFragmentAdapter(), R.id.childContainer);
-        mNavigator.setDefaultPosition(0);
-        mNavigator.onCreate(savedInstanceState);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        if (viewPager != null) {
+            setupViewPager(viewPager);
+        }
 
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        tabLayout.setOnTabItemClickListener(new TabLayout.OnTabItemClickListener() {
-            @Override
-            public void onTabItemClick(int position, View view) {
-                setCurrentTab(position);
-            }
-        });
-
-        setCurrentTab(mNavigator.getCurrentPosition());
+        TabLayout tabLayout = (android.support.design.widget.TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             postponeEnterTransition();
@@ -48,16 +45,6 @@ public class EventDetailActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mNavigator.onSaveInstanceState(outState);
-    }
-
-    public void setCurrentTab(int position) {
-        mNavigator.showFragment(position);
-        tabLayout.select(position);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -88,5 +75,41 @@ public class EventDetailActivity extends AppCompatActivity {
         }
     }
 
+    private void setupViewPager(ViewPager viewPager) {
+        Adapter adapter = new Adapter(getSupportFragmentManager());
+        adapter.addFragment(new AboutFragment(), "ABOUT");
+        adapter.addFragment(new SpeakerFragment(), "SPEAKER");
+        adapter.addFragment(new MapFragment(), "MAP");
+        viewPager.setAdapter(adapter);
+    }
+
+    static class Adapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragments = new ArrayList<>();
+        private final List<String> mFragmentTitles = new ArrayList<>();
+
+        public Adapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragments.add(fragment);
+            mFragmentTitles.add(title);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitles.get(position);
+        }
+    }
 
 }
