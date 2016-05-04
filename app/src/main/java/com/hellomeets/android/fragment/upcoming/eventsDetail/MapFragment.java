@@ -3,10 +3,17 @@ package com.hellomeets.android.fragment.upcoming.eventsDetail;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.hellomeets.android.R;
 
 /**
@@ -47,6 +54,9 @@ public class MapFragment extends Fragment {
         return fragment;
     }
 
+    private SupportMapFragment fragment;
+    private GoogleMap map;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,5 +72,34 @@ public class MapFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        FragmentManager fm = getChildFragmentManager();
+        fragment = (SupportMapFragment) fm.findFragmentById(R.id.map_container);
+        if (fragment == null) {
+            fragment = SupportMapFragment.newInstance();
+            fm.beginTransaction().replace(R.id.map_container, fragment).commit();
+        }
+        /***at this time google play services are not
+         * initialize so get map and add what
+         * ever you want to it in onResume() or onStart()* **/
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (map == null) {
+            map = fragment.getMap();
+            LatLng delhi = new LatLng(28.6139, 77.2090);
+            map.addMarker(new MarkerOptions().position(delhi).title("Marker in Delhi"));
+            map.moveCamera(CameraUpdateFactory.newLatLng(delhi));
+            CameraUpdate cameraPosition = CameraUpdateFactory.newLatLngZoom(delhi, 11.0f);
+            map.animateCamera(cameraPosition);
+        }
+    }
+
 
 }
